@@ -18,7 +18,7 @@ endfunction
 
 function! s:SimpleGrepInput()
   let s:str=input("Grep:")
-  call SimpleGrep(s:str)
+  call <SID>SimpleGrep(s:str)
 endfunction
 
 nmap <leader>n :call <SID>SimpleGrepInput()<CR>
