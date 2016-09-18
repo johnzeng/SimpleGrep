@@ -3,6 +3,8 @@ Simple grep plugin for vim , say goodbye to the complicate grep commands
 
 This plugin is really simple so I won't make much word on it
 
+Since this plugin is using egrep as engine, so you may need to install egrep locally and this plugin support the regex natively.
+
 # key binding
 `<leader>n` to start a grep search
 `<C-n>` to search the word under you cursor
