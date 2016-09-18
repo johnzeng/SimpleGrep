@@ -9,7 +9,7 @@ endif
 function! s:SimpleGrep(input)
   let a:excludedir = '{'.join(g:grep_exclude_dir, ',').'}'
   let a:exclude = '{'.join(g:grep_exclude_file,',').'}'
-  let cmd = "egrep -InRi --exclude-dir=".a:excludedir." --exclude=".a:exclude." ".a:input." ."
+  let cmd = "egrep -InRi --exclude-dir=".a:excludedir." --exclude=".a:exclude." '".a:input."' ."
   echom cmd
   let a:out = system(cmd) 
   cgete a:out
