@@ -27,7 +27,7 @@ function! s:SimpleGrepInput()
   let s:str=substitute(s:str,"'", "'\"'\"'", 'g')
   "surrand input with '' so the input won't be translate to anything that you
   "don't know
-  let s:str= s:AppendSingleQuate(s:str)
+  let s:str= s:AppendSingleQuate(0, s:str)
   
   call <SID>SimpleGrep(s:str)
 endfunction
