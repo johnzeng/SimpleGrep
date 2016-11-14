@@ -8,7 +8,7 @@ if !exists("g:grep_exclude_file")
   let g:grep_exclude_file=[".gitignore", "*.beam", "*.o", "*.pyc", "*.swp", "*.zip", "*.rar"]
 endif
 
-function s:AppendSingleQuate(key, v)
+function! s:AppendSingleQuate(key, v)
   return "'".a:v."'"
 endfunc
 
@@ -27,7 +27,7 @@ function! s:SimpleGrepInput()
   let s:str=substitute(s:str,"'", "'\"'\"'", 'g')
   "surrand input with '' so the input won't be translate to anything that you
   "don't know
-  let s:str="'".s:str."'"
+  let s:str= s:AppendSingleQuate(s:str)
   
   call <SID>SimpleGrep(s:str)
 endfunction
