@@ -39,6 +39,10 @@ endfunction
 function! s:SimpleGrepInput()
   let s:str=input("Grep:")
   "surround the ' with "" so it won't cause shell error
+  if s:str == ""
+      echo 'no input'
+      return ''
+  endif
   let s:str=substitute(s:str,"'", "'\"'\"'", 'g')
   "surrand input with '' so the input won't be translate to anything that you
   "don't know
