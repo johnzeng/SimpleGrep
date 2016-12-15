@@ -13,10 +13,25 @@ function! s:AppendSingleQuate(key, v)
 endfunc
 
 function! s:SimpleGrep(input)
-  let a:excludedir = "{".join(map(copy(g:grep_exclude_dir), function('s:AppendSingleQuate')), ',')."}"
-  let a:exclude = "{".join(map(copy(g:grep_exclude_file), function('s:AppendSingleQuate')),',')."}"
-  let cmd = "egrep -InRi --exclude-dir=".a:excludedir." --exclude=".a:exclude." ".a:input." ."
-  let a:out = system(cmd) 
+  let a:i = 0
+  let a:dirlist =  []
+  while a:i < len(g:grep_exclude_dir)
+      call add(a:dirlist, "'".g:grep_exclude_dir[a:i]."'")
+      let a:i = a:i + 1
+  endwhile
+  let a:excludedir = "{".join(a:dirlist, ',')."}"
+
+  let a:filelist = []
+
+  let a:i = 0
+  while a:i < len(g:grep_exclude_file)
+      call add(a:filelist, "'".g:grep_exclude_file[a:i]."'")
+      let a:i = a:i + 1
+  endwhile
+
+  let a:exclude = "{".join(a:filelist,',')."}"
+  let a:cmd = "egrep -InRi --exclude-dir=".a:excludedir." --exclude=".a:exclude." ".a:input." ."
+  let a:out = system(a:cmd) 
   cgete a:out
   cope
 endfunction
